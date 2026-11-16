@@ -25,6 +25,7 @@ android {
 }
 
 dependencies {
+    implementation(project(":core:domain"))
     implementation(libs.androidx.core.ktx)
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.ui)
