@@ -14,8 +14,10 @@ Thumbs.db
 
 # Signing and local secrets
 *.keystore
+*.keystore.base64
 *.jks
 keystore.properties
+*service-account*.json
 google-services.json
 
 # Planning companion

@@ -1,0 +1,16 @@
+name: Technische Aufgabe oder Recherche
+description: Setup, Infrastruktur, Dokumentation, Fehler oder Recherche
+title: "[Task] "
+body:
+  - type: textarea
+    id: goal
+    attributes:
+      label: Ziel und fachlicher Nutzen
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Akzeptanzkriterien und Nachweis
+    validations:
+      required: true
