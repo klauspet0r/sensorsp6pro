@@ -27,6 +27,10 @@ android {
     }
 }
 
+tasks.matching { it.name == "kaptDebugUnitTestKotlin" }.configureEach {
+    enabled = false
+}
+
 dependencies {
     implementation(project(":core:domain"))
     implementation(project(":core:ui"))
