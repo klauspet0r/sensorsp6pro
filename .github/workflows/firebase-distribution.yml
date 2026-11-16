@@ -20,11 +20,20 @@ jobs:
       - uses: gradle/actions/setup-gradle@v4
       - name: Unit tests and lint
         run: ./gradlew :core:domain:test testDebugUnitTest lintDebug
+      - name: Enable and verify KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+          test -c /dev/kvm
+          test -r /dev/kvm && test -w /dev/kvm
+          "$ANDROID_HOME/emulator/emulator" -accel-check
       - uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: 35
           target: google_apis
           arch: x86_64
+          disable-linux-hw-accel: false
           script: ./gradlew connectedDebugAndroidTest
       - id: auth
         uses: google-github-actions/auth@v2
