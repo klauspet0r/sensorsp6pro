@@ -24,7 +24,7 @@ class AccelerationScreenTest {
                 onActiveChange = { active = it },
             )
         }
-        compose.onNodeWithText("9,81 m/s²", substring = true).assertIsDisplayed()
+        compose.onNodeWithText("Z\n9,81 m/s²").assertIsDisplayed()
         compose.onNodeWithText("Probier es aus").assertIsDisplayed()
         compose.onNodeWithText("Messung pausieren").performClick()
         assertFalse(active)
