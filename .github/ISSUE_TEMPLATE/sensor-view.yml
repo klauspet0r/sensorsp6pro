@@ -1,0 +1,41 @@
+name: Sensoransicht
+description: Eine neue Sensor- oder Datenquellenansicht
+title: "[Sensor] "
+labels: [feature]
+body:
+  - type: input
+    id: source
+    attributes:
+      label: Datenquelle und Android-API
+    validations:
+      required: true
+  - type: textarea
+    id: visualization
+    attributes:
+      label: Visualisierung und Experiment
+      value: |
+        - Live-Werte und Einheiten:
+        - Diagramm oder sonstige Visualisierung:
+        - Verständliche Erklärung:
+        - Experiment:
+    validations:
+      required: true
+  - type: textarea
+    id: permissions
+    attributes:
+      label: Berechtigungen und Hardwaregrenzen
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Akzeptanzkriterien
+      value: |
+        - [ ] Eigene Route und Material-You-Ansicht
+        - [ ] Reale Werte ohne Beispiel-Fallback
+        - [ ] Lade-, Pausen-, Fehler- und Verfügbarkeitszustände
+        - [ ] Listener enden bei Pause und Hintergrund
+        - [ ] Unit- und Compose-UI-Tests bestanden
+        - [ ] Manuelle Pixel-Testcheckliste bestanden
+    validations:
+      required: true
