@@ -3,7 +3,8 @@ package dev.sensorsp6pro.explorer.feature.motion
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithText
-import androidx.compose.ui.test.performClick
+import androidx.compose.ui.test.performSemanticsAction
+import androidx.compose.ui.semantics.SemanticsActions
 import dev.sensorsp6pro.explorer.core.domain.AccelerationMeasurement
 import dev.sensorsp6pro.explorer.core.domain.SensorAccuracy
 import dev.sensorsp6pro.explorer.core.domain.Vector3
@@ -26,7 +27,10 @@ class AccelerationScreenTest {
         }
         compose.onNodeWithText("Z\n9,81 m/s²").assertIsDisplayed()
         compose.onNodeWithText("Probier es aus").assertIsDisplayed()
-        compose.onNodeWithText("Messung pausieren").performClick()
-        assertFalse(active)
+        compose.onNodeWithText("Messung pausieren")
+            .performSemanticsAction(SemanticsActions.OnClick)
+        compose.runOnIdle {
+            assertFalse(active)
+        }
     }
 }
