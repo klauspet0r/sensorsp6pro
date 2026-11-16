@@ -20,13 +20,25 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    signingConfigs {
+        create("release") {
+            storeFile = providers.gradleProperty("RELEASE_STORE_FILE").orNull?.let(::file)
+            storePassword = providers.gradleProperty("RELEASE_STORE_PASSWORD").orNull
+            keyAlias = providers.gradleProperty("RELEASE_KEY_ALIAS").orNull
+            keyPassword = providers.gradleProperty("RELEASE_KEY_PASSWORD").orNull
+        }
+    }
+
     buildTypes {
         debug {
             applicationIdSuffix = ".debug"
+            resValue("string", "app_name", "Sensor Explorer Dev")
         }
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
+            isShrinkResources = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            signingConfig = signingConfigs.getByName("release")
         }
     }
     compileOptions {
